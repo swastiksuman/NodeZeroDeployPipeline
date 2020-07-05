@@ -13,7 +13,7 @@ pipeline {
                 git 'https://github.com/swastiksuman/NodeZero.git'
 
                 // Run Maven on a Unix agent.
-                sh "node myserver.js"
+                sh "nohup node myserver.js &"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
