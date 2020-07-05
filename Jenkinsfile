@@ -23,7 +23,7 @@ pipeline {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 success {
-                	mail to: swastiksuman@gmail.com, subject: 'The Pipeline executed successfully.'    
+                	sh "Hello, World!!!"    
                 }
             }
         }
