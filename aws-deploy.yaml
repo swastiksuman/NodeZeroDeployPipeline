@@ -1,0 +1,21 @@
+---
+- hosts: machines
+  tasks:
+          - name: Ping ip
+            shell: echo hello
+          - name: change node repo
+            shell: curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+          - name: install node
+            shell: sudo yum -y install nodejs
+          - name: install git
+            shell: sudo yum -y install git
+          - name: git clone 
+            shell: git clone https://github.com/swastiksuman/NodeZero.git
+          - name: install packages
+            shell: npm install
+            args:
+                    chdir: /home/ec2-user/NodeZero
+          - name: start
+            shell: node myserver.js
+            args:
+                    chdir: /home/ec2-user/NodeZero
