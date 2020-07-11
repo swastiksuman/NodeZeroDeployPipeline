@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/swastiksuman/NodeZero.git'
+                git 'https://github.com/swastiksuman/NodeZeroDeployPipeline.git'
 		ansiblePlaybook installation: 'Ansible', inventory: 'playbooks/inventory', playbook: 'playbooks/aws-deploy.yaml'
                 // Run Maven on a Unix agent.
                 sh "nohup node myserver.js &"
