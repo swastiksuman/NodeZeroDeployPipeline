@@ -17,7 +17,7 @@ pipeline {
 
       steps {
         // Get some code from a GitHub repository
-
+        sh "ech Hello"
       }
 
       post {
