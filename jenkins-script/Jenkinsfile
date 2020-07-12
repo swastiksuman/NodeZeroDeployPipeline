@@ -1,33 +1,32 @@
 pipeline {
-    agent any
-    	
-    //tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-       // maven "M3"
-    //}
+  agent any
 
-    stages {
-        stage('Build') {
-            steps {
-                // Get some code from a GitHub repository
-                git 'https://github.com/swastiksuman/NodeZeroDeployPipeline.git'
-		ansiblePlaybook installation: 'Ansible', inventory: 'playbooks/inventory', playbook: 'playbooks/aws-deploy.yaml'
-                // Run Maven on a Unix agent.
-                sh "nohup node myserver.js &"
-		sh "pwd"
-		sh "echo ${params.DeploymentEnvironment}"
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
+  //tools {
+  // Install the Maven version configured as "M3" and add it to the path.
+  // maven "M3"
+  //}
 
-            post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                	sh "echo Hello"    
-                }
-            }
-        }
+  stages {
+    stage('Create EC2 Instance'){
+      steps {
+        git 'https://github.com/swastiksuman/NodeZeroDeployPipeline.git'
+        ansiblePlaybook installation: 'Ansible', playbook: 'playbooks/aws-create.yaml', extras: 'ansible_python_interpreter=/usr/bin/python3 aws_access_key=AKIAIQ2Q6VMEUYSRWUUQ aws_secret_key=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'
+      }
     }
-}
+    stage('Build') {
 
+      steps {
+        // Get some code from a GitHub repository
+
+      }
+
+      post {
+        // If Maven was able to run the tests, even if some of the test
+        // failed, record the test results and archive the jar file.
+        success {
+          sh "echo Hello"
+        }
+      }
+    }
+  }
+}
