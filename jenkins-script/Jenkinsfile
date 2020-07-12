@@ -10,6 +10,7 @@ pipeline {
     stage('Create EC2 Instance'){
       steps {
         sh "alias python=python3"
+        sh "whoami"
         git 'https://github.com/swastiksuman/NodeZeroDeployPipeline.git'
         ansiblePlaybook installation: 'Ansible', playbook: 'playbooks/aws-create.yaml', extras: "-e 'ansible_python_interpreter=/usr/bin/python3 aws_access_key="+ params.aws_access_key +" aws_secret_key="+ params.aws_secret_key+"'"
       }
