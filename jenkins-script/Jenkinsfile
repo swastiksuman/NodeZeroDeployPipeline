@@ -10,7 +10,7 @@ pipeline {
     stage('Create EC2 Instance'){
       steps {
         git 'https://github.com/swastiksuman/NodeZeroDeployPipeline.git'
-        ansiblePlaybook installation: 'Ansible', playbook: 'playbooks/aws-create.yaml', extras: 'ansible_python_interpreter=/usr/bin/python3 aws_access_key=AKIAIQ2Q6VMEUYSRWUUQ aws_secret_key=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'
+        ansiblePlaybook installation: 'Ansible', playbook: 'playbooks/aws-create.yaml', extras: 'ansible_python_interpreter=/usr/bin/python3 aws_access_key='+ params.aws_access_key +' aws_secret_key='+ params.aws_secret_key
       }
     }
     stage('Build') {
