@@ -1,3 +1,4 @@
 ---
   - include: create-instance.yaml
   - include: print-ip.yaml
+  - include: update-inventory-ip.yaml
