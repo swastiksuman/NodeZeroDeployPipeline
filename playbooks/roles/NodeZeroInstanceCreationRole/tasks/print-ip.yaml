@@ -1,0 +1,5 @@
+---
+  - name: Print the ec2 public ip
+    debug:
+      msg: EC2 Created with IP {{  item.public_ip }}
+    with_items: "{{ ec2.instances }}"# tasks file for NodeZeroInstanceCreationRole

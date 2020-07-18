@@ -1,0 +1,3 @@
+---
+  - include: create-instance.yaml
+  - include: print-ip.yaml
